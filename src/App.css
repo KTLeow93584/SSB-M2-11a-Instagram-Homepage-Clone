@@ -1,0 +1,19 @@
+.side-dashboard-container {
+  width: 100%;
+  transition: width 0.5s display 0.2s;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100vh;
+
+  background-color: lightgrey;
+}
+
+.side-dashboard-text {
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}

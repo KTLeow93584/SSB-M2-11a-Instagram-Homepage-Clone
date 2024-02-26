@@ -1,0 +1,47 @@
+/* Buttons (With Faded Colors) */
+button.side-dashboard-button {
+    background-color: transparent;
+    color: black;
+    border-color: transparent;
+}
+
+button.side-dashboard-button:hover {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+    color: black;
+}
+
+button.side-dashboard-button:active {
+    animation: button-bg-color-static 0.1s linear forwards;
+}
+
+/* Buttons (Fully Transparent) */
+button.side-dashboard-button-full-transparent {
+    background-color: transparent;
+    color: black;
+    border-color: transparent;
+}
+
+button.side-dashboard-button-full-transparent:active {
+    animation: button-bg-color-static 0.1s linear forwards;
+}
+
+button.side-dashboard-button-full-transparent:hover {
+    background-color: transparent;
+    color: black;
+    border-color: transparent;
+}
+
+@keyframes button-bg-color-static {
+    0% {
+        background-color: transparent;
+        color: black;
+        border-color: transparent;
+    }
+
+    100% {
+        background-color: transparent;
+        color: gray;
+        border-color: transparent;
+    }
+}

@@ -1,0 +1,119 @@
+.custom-carousel {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.custom-carousel-items-group {
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+
+.custom-carousel-item {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-carousel-item-element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.custom-carousel-item-element-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+}
+
+.custom-carousel-item-element-img-div {
+    width: 20%;
+    min-width: 32px;
+}
+
+.custom-carousel-item-element-img {
+    width: 100%;
+    height: auto;
+
+    border-radius: 50%;
+
+    padding: 0 5% 0 5%;
+    object-fit: cover;
+}
+
+.custom-carousel-item-element-caption {
+    width: 100%;
+    min-width: 32px;
+    height: auto;
+
+    color: black;
+
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.custom-carousel-buttons-group {
+    height: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.custom-carousel-previous-button,
+.custom-carousel-next-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    padding: 5px;
+
+    width: 32px;
+    height: 32px;
+}
+
+.custom-carousel-previous-button {
+    background-image: url("../assets/left.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.custom-carousel-next-button {
+    background-image: url("../assets/right.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.custom-carousel-indicator-button {
+    border: none;
+    cursor: pointer;
+
+    background-color: red;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    padding: 5px;
+    margin: 5px;
+}
+
+.custom-carousel-indicator-button-active {
+    border: none;
+    cursor: pointer;
+    background-color: blue;
+}

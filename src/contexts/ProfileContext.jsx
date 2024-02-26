@@ -1,0 +1,16 @@
+import { createContext, useContext } from 'react';
+
+import { PROFILE_DATA } from '../data.js';
+
+const ProfileContext = createContext(null);
+export function GetProfileContext() {
+    return useContext(ProfileContext);
+}
+
+export function ProfileContextProvider({ children }) {
+    return (
+        <ProfileContext.Provider value={PROFILE_DATA}>
+            {children}
+        </ProfileContext.Provider>
+    );
+}

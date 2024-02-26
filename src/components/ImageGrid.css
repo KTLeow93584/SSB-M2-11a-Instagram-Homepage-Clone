@@ -1,0 +1,26 @@
+.category-link>*,
+.category-link-selected>* {
+    text-decoration: none;
+    color: black;
+}
+
+.category-link>* {
+    font-weight: normal;
+}
+
+.category-link-selected>* {
+    font-weight: bold;
+}
+
+.category-link {
+    background-color: transparent;
+}
+
+.category-item,
+.category-item-selected {
+    border-radius: 15px;
+}
+
+.category-item-selected {
+    background-color: lightgrey;
+}
