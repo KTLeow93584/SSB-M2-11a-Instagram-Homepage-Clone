@@ -9,7 +9,7 @@ import { GetProfileContext } from '../contexts/ProfileContext.jsx';
 import SectionButtons from '../components/SectionButtons.jsx';
 
 export default function ProfileHeader({ minWidthLimit }) {
-    const userProfile = GetProfileContext();
+    const userProfile = GetProfileContext().userProfile;
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 

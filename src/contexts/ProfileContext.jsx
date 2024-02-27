@@ -9,7 +9,7 @@ export function GetProfileContext() {
 
 export function ProfileContextProvider({ children }) {
     return (
-        <ProfileContext.Provider value={PROFILE_DATA}>
+        <ProfileContext.Provider value={{ userProfile: PROFILE_DATA, postCategories: Object.keys(PROFILE_DATA.posts) }}>
             {children}
         </ProfileContext.Provider>
     );

@@ -5,8 +5,8 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import { GetProfileContext } from '../contexts/ProfileContext';
 
-export default function Sidebar() {
-    const profileImage = GetProfileContext().image;
+export default function Sidebar({ showModalCallback }) {
+    const profileImage = GetProfileContext().userProfile.image;
 
     return (
         <>
@@ -31,7 +31,7 @@ export default function Sidebar() {
                 {/* Heart Icon (Notifications) */}
                 <SidebarButtonBI header="Notifications" biIcon={"heart"} />
                 {/* Boxed Plus Icon (Create) */}
-                <SidebarButtonBI header="Create" biIcon={"plus-square"} />
+                <SidebarButtonBI header="Create" biIcon={"plus-square"} onClickCallback={showModalCallback} />
                 {/* People Icon (Profile) */}
                 <SidebarButtonImage header="Profile" src={profileImage} />
             </Col>
