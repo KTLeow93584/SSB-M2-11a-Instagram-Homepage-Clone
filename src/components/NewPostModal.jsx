@@ -99,27 +99,30 @@ export default function NewPostModal({ show, handleClose }) {
                                 onChange={(event) => setDescription(event.target.value)}
                                 className="my-3" as="textarea" rows={3} />
 
-                            <Dropdown className="mb-3"
-                                title="Select post category"
-                                key={categoryKey}
-                                onSelect={(newKey) => setCategoryKey(newKey)}>
-                                <Dropdown.Toggle variant="success" id="post-dropdown-toggle">
-                                    {categoryKey}
-                                </Dropdown.Toggle>
+                            <Form.Group className="d-flex align-items-center justify-content-start">
+                                <Form.Label className="me-3">Category:</Form.Label>
+                                <Dropdown className="mb-3"
+                                    title="Select post category"
+                                    key={categoryKey}
+                                    onSelect={(newKey) => setCategoryKey(newKey)}>
+                                    <Dropdown.Toggle variant="success" id="post-dropdown-toggle">
+                                        {categoryKey}
+                                    </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    {
-                                        postCategories.map((category, index) => {
-                                            return (<Dropdown.Item
-                                                key={`post-category-${index}`}
-                                                eventKey={`${category}`}
-                                                active={categoryKey === category}>
-                                                {category}
-                                            </Dropdown.Item>);
-                                        })
-                                    }
-                                </Dropdown.Menu>
-                            </Dropdown>
+                                    <Dropdown.Menu>
+                                        {
+                                            postCategories.map((category, index) => {
+                                                return (<Dropdown.Item
+                                                    key={`post-category-${index}`}
+                                                    eventKey={`${category}`}
+                                                    active={categoryKey === category}>
+                                                    {category}
+                                                </Dropdown.Item>);
+                                            })
+                                        }
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Form.Group>
 
                             <Button type="submit" style={{ width: "100%" }}>
                                 Share

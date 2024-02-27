@@ -12,6 +12,7 @@ import Image from 'react-bootstrap/Image';
 
 import UpdatePostModal from './UpdatePostModal.jsx';
 import DeletePostModal from './DeletePostModal.jsx';
+import ViewPostModal from './ViewPostModal.jsx';
 
 import './ImageGrid.css';
 
@@ -20,16 +21,43 @@ export default function ImageGrid() {
 
     const [showUpdate, setShowUpdate] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
+    const [showPost, setShowPost] = useState(false);
+
     const [currentPost, setCurrentPost] = useState(null);
 
-    const handleClose = (isUpdate) => {
+    const handleClose = (state) => {
         setCurrentPost(null);
-        isUpdate ? setShowUpdate(false) : setShowDelete(false);
+
+        switch (state) {
+            case "update":
+                setShowUpdate(false);
+                break;
+            case "delete":
+                setShowDelete(false);
+                break;
+            case "view":
+                setShowPost(false);
+                break;
+        }
     }
 
-    const handleShow = (post, isUpdate) => {
+    const handleShow = (post, state) => {
         setCurrentPost(post);
-        isUpdate ? setShowUpdate(true) : setShowDelete(true);
+
+        // Debug
+        //console.log("[On Modal Visible] State.", state);
+
+        switch (state) {
+            case "update":
+                setShowUpdate(true);
+                break;
+            case "delete":
+                setShowDelete(true);
+                break;
+            case "view":
+                setShowPost(true);
+                break;
+        }
     }
 
     const renderImages = (category) => {
@@ -41,15 +69,19 @@ export default function ImageGrid() {
 
         return categorizedPosts.map((item, index) => (
             <Col className="col-12 col-sm-6 col-md-4 mb-4" key={index}>
-                <Image src={item.image} fluid style={{ width: "100%", height: "auto" }} />
-                <Button onClick={() => handleShow(item, true)}
-                    variant="outline-primary">
-                    <i className="bi bi-pencil-square"></i>
-                </Button>
-                <Button onClick={() => handleShow(item, false)}
-                    variant="outline-danger">
-                    <i className="bi bi-trash"></i>
-                </Button>
+                <Image src={item.image} fluid type="button"
+                    style={{ width: "100%", height: "auto" }}
+                    onClick={() => handleShow(item, "view")} />
+                <div className="d-flex justify-content-evenly mt-2">
+                    <Button onClick={() => handleShow(item, "update")}
+                        variant="outline-primary">
+                        <i className="bi bi-pencil-square"></i>
+                    </Button>
+                    <Button onClick={() => handleShow(item, "delete")}
+                        variant="outline-danger">
+                        <i className="bi bi-trash"></i>
+                    </Button>
+                </div>
             </Col>
         ));
     };
@@ -96,6 +128,13 @@ export default function ImageGrid() {
             {
                 currentPost && <DeletePostModal
                     show={showDelete}
+                    handleClose={handleClose}
+                    postCategory={categoryKey}
+                    postId={currentPost.id} />
+            }
+            {
+                currentPost && <ViewPostModal
+                    show={showPost}
                     handleClose={handleClose}
                     postCategory={categoryKey}
                     postId={currentPost.id} />

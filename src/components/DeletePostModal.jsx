@@ -43,14 +43,14 @@ export default function DeletePostModal({ show, handleClose, postCategory, postI
         }));
 
         if (handleClose)
-            handleClose(false);
+            handleClose("delete");
     }
 
     const placeholderImg = 'https://sig1.co/img-placeholder-1';
 
     return (
         <Modal className="d-flex flex-column align-items-center justify-content-center"
-            show={show} onHide={() => handleClose(false)} size="lg">
+            show={show} onHide={() => handleClose("delete")} size="lg">
             <Modal.Header>
                 <Modal.Title>Confirm post deletion?</Modal.Title>
             </Modal.Header>
@@ -98,7 +98,7 @@ export default function DeletePostModal({ show, handleClose, postCategory, postI
                 <Button onClick={handleDelete} style={{ width: "25%" }}>
                     Yes
                 </Button>
-                <Button onClick={() => handleClose(false)} style={{ width: "25%" }}>
+                <Button onClick={() => handleClose("delete")} style={{ width: "25%" }}>
                     No
                 </Button>
             </Modal.Body>

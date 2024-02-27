@@ -3,10 +3,7 @@ import { PROFILE_DATA } from '../../data.js';
 
 const postSlice = createSlice({
     name: "posts",
-    initialState: () => {
-        const posts = PROFILE_DATA.posts;
-        return posts;
-    },
+    initialState: PROFILE_DATA.posts,
     reducers: {
         // ===========================
         // New Post (Add)
@@ -22,8 +19,10 @@ const postSlice = createSlice({
                 image: action.payload.post.image,
                 description: action.payload.post.description,
                 date: nowDate.toISOString(),
-                likes: 0,
-                comments: 0,
+                likeCount: 0,
+                liked: false,
+                commentCount: 0,
+                comments: []
             };
 
             state[category].push(newPost);
@@ -72,6 +71,7 @@ const postSlice = createSlice({
 
             // Debug
             //console.log("[On Create New Post Comment] Payload.", action.payload);
+            //console.log("[On Create New Post Comment] State.", state[category]);
 
             const index = state[category].findIndex((post) => post.id === action.payload.post.id);
             state[category][index].commentCount++;
@@ -86,7 +86,10 @@ const postSlice = createSlice({
             //console.log("[On Like Post] Payload.", action.payload);
 
             const index = state[category].findIndex((post) => post.id === action.payload.post.id);
-            state[category][index].likeCount++;
+            const liked = action.payload.post.liked;
+            state[category][index].liked = liked;
+            
+            liked ? ++state[category][index].likeCount : --state[category][index].likeCount;
         }
         // ===========================
     }

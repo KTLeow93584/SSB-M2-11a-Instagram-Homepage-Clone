@@ -60,7 +60,7 @@ export default function UpdatePostModal({ show, handleClose, postCategory, postI
             setDescription('');
 
             if (handleClose)
-                handleClose(true);
+                handleClose("update");
         }
         else
             setInvalidUrl(true);
@@ -77,7 +77,7 @@ export default function UpdatePostModal({ show, handleClose, postCategory, postI
     const placeholderImg = 'https://sig1.co/img-placeholder-1';
 
     return (
-        <Modal show={show} onHide={() => handleClose(true)} size="lg">
+        <Modal show={show} onHide={() => handleClose("update")} size="lg">
             <Modal.Header>
                 <Modal.Title>Edit Existing Post</Modal.Title>
             </Modal.Header>
@@ -119,27 +119,30 @@ export default function UpdatePostModal({ show, handleClose, postCategory, postI
                                 rows={3}
                                 placeholder="Write a caption..." />
 
-                            <Dropdown className="mb-3"
-                                title="Select post category"
-                                key={categoryKey}
-                                onSelect={(newKey) => setCategoryKey(newKey)}>
-                                <Dropdown.Toggle variant="success" id="post-dropdown-toggle">
-                                    {categoryKey}
-                                </Dropdown.Toggle>
+                            <Form.Group className="d-flex align-items-center justify-content-start">
+                                <Form.Label className="me-3">Category:</Form.Label>
+                                <Dropdown className="mb-3"
+                                    title="Select post category"
+                                    key={categoryKey}
+                                    onSelect={(newKey) => setCategoryKey(newKey)}>
+                                    <Dropdown.Toggle variant="success" id="post-dropdown-toggle">
+                                        {categoryKey}
+                                    </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    {
-                                        postCategories.map((category, index) => {
-                                            return (<Dropdown.Item
-                                                key={`post-category-${index}`}
-                                                eventKey={`${category}`}
-                                                active={categoryKey === category}>
-                                                {category}
-                                            </Dropdown.Item>);
-                                        })
-                                    }
-                                </Dropdown.Menu>
-                            </Dropdown>
+                                    <Dropdown.Menu>
+                                        {
+                                            postCategories.map((category, index) => {
+                                                return (<Dropdown.Item
+                                                    key={`post-category-${index}`}
+                                                    eventKey={`${category}`}
+                                                    active={categoryKey === category}>
+                                                    {category}
+                                                </Dropdown.Item>);
+                                            })
+                                        }
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Form.Group>
 
                             <Button type="submit" style={{ width: "100%" }}>
                                 Share
