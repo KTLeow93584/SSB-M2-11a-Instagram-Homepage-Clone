@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Row from 'react-bootstrap/Row';
@@ -36,6 +36,32 @@ export default function ViewPostModal({ show, handleClose, postCategory, postId 
             setLiked(post.liked);
         }
     }, [post]);
+
+    const imageContainerRef = useRef(null);
+    const [imageWindowWidth, setImageWindowWidth] = useState(imageContainerRef.current ? imageContainerRef.current.offsetWidth : 0);
+    const [imageWindowHeight, setImageWindowHeight] = useState(imageContainerRef.current ? imageContainerRef.current.offsetHeight : 0);
+
+    const handleResize = () => {
+        const newWidth = imageContainerRef.current ? imageContainerRef.current.offsetWidth : 0;
+        const newHeight = imageContainerRef.current ? imageContainerRef.current.offsetHeight : 0;
+
+        setImageWindowWidth(newWidth);
+        setImageWindowHeight(newHeight);
+
+        // Debug
+        //console.log("New Dimensions (Width): ", newWidth);
+        //console.log("New Dimensions (Height): ", newHeight)
+    };
+
+    useEffect(() => {
+        handleResize();
+
+        // Add event listener to handle window resize
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleSubmitNewComment = (event) => {
         event.preventDefault();
@@ -89,8 +115,15 @@ export default function ViewPostModal({ show, handleClose, postCategory, postId 
             <Modal.Body className="m-0 p-0" style={{ backgroundColor: "black", overflow: "hidden" }}>
                 <Row>
                     {/* Post Icon */}
-                    <Col className="col-8 d-flex align-items-center justify-content-center">
-                        {/*<Image src={post.image} style={{ height: "auto", width: "100%" }} />*/}
+                    <Col ref={imageContainerRef}
+                        className="col-8 d-flex align-items-center justify-content-center">
+                        <Image
+                            src={post.image}
+                            style={{
+                                objectFit: "contain",
+                                maxWidth: `${imageWindowWidth}px`, maxHeight: `${imageWindowHeight}px`,
+                                width: "100%", height: "auto"
+                            }} />
                     </Col>
                     {/* Post Details */}
                     <Col className="col-4 pt-3 bg-light d-flex flex-column align-items-start justify-content-start" style={{ height: "100vh" }}>
@@ -178,6 +211,6 @@ export default function ViewPostModal({ show, handleClose, postCategory, postId 
                     </Col>
                 </Row>
             </Modal.Body>
-        </Modal >
+        </Modal>
     );
 }
