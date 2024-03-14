@@ -20,9 +20,6 @@ export default function UpdatePostModal({ show, handleClose, postCategory, postI
 
     const dispatch = useDispatch();
 
-    // Debug
-    //console.log("[On Modify Post] Post Category: " + postCategory + ", ID: " + postId);
-
     const post = useSelector((state) => {
         // Debug
         //console.log("[On Modify Post] State.", state);
@@ -30,10 +27,13 @@ export default function UpdatePostModal({ show, handleClose, postCategory, postI
         return state.posts[postCategory].find((post) => post.id === postId);
     });
 
-    const [categoryKey, setCategoryKey] = useState(postCategories[0]);
+    const [categoryKey, setCategoryKey] = useState(postCategory.substring(0, 1).toUpperCase() + postCategory.substring(1));
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
     const [invalidUrl, setInvalidUrl] = useState(false);
+
+    // Debug
+    //console.log("[On Modify Post] Post Category: " + postCategories[0] + ", ID: " + postId);
 
     useEffect(() => {
         if (post) {
