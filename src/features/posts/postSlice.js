@@ -43,14 +43,12 @@ const postSlice = createSlice({
             }
             else {
                 const oldIndex = state[oldCategory].findIndex((post) => post.id === action.payload.post.id);
-                const newPost = state[oldCategory][oldIndex];
-
                 state[oldCategory].splice(oldIndex, 1);
 
                 // Debug
-                //console.log("[On Modify Post] Push post to new category.", newPost);
+                console.log("[On Modify Post] Push post to new category.", action.payload.post);
 
-                state[newCategory].push(newPost);
+                state[newCategory].push(action.payload.post);
             }
         },
         // ===========================
