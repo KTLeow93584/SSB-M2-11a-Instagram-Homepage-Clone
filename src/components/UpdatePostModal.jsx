@@ -52,7 +52,12 @@ export default function UpdatePostModal({ show, handleClose, postCategory, postI
                 post: {
                     id: postId,
                     image: imageUrl,
-                    description
+                    description,
+                    date: post.date,
+                    likeCount: post.likeCount,
+                    liked: post.liked,
+                    commentCount: post.commentCount,
+                    comments: post.comments
                 }
             }));
 
